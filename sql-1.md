@@ -1,10 +1,11 @@
 ### Проверка отображения созданного заказа в базе даных:
 ```
 SELECT c.login,
-       COUNT(o."inDelivery")
+              COUNT(o."inDelivery")
 FROM "Couriers" AS c
 LEFT OUTER JOIN "Orders" AS o ON c.id=o."courierId"
-GROUP BY c.login;
+GROUP BY c.login, o."inDelivery"
+HAVING o."inDelivery"=true;
 ```
 
 ### Проверка корректного отображения статусов заказав базе даных
